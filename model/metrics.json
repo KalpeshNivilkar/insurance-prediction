@@ -1,0 +1,10 @@
+{
+  "r2_score": 0.7836,
+  "adjusted_r2_score": 0.776,
+  "mean_squared_error": 33596915.85,
+  "root_mean_squared_error": 5796.28,
+  "test_set_size": 268,
+  "training_set_size": 1070,
+  "dataset_size": 1338,
+  "num_features": 9
+}

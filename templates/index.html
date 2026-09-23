@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Insurance Charges Predictor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="brand">
+        <span class="brand-mark">IC</span>
+        Insurance Charges Predictor
+      </a>
+      <div class="nav-links">
+        <a href="#how-it-works">How it works</a>
+        <a href="#about-model">Model</a>
+        <a href="/predict" class="btn btn-primary">Predict Insurance Charges</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow"><span class="eyebrow-dot"></span>Linear Regression · Regression Model</div>
+        <h1>Estimate <span>insurance charges</span> before the bill arrives.</h1>
+        <p class="hero-desc">
+          Predict estimated medical insurance charges using a Linear Regression
+          machine learning model trained on real policyholder data —
+          age, BMI, smoking status, and more.
+        </p>
+        <div class="hero-actions">
+          <a href="/predict" class="btn btn-primary">Predict Insurance Charges</a>
+          <a href="#about-model" class="btn btn-secondary">How the model works</a>
+        </div>
+
+        <div class="stat-row">
+          <div class="stat-card">
+            <div class="stat-value">{{ dataset_size }}</div>
+            <div class="stat-label">Dataset size</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">Linear</div>
+            <div class="stat-label">ML algorithm</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">{{ r2_score }}</div>
+            <div class="stat-label">R² score</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="quote-slip">
+          <div class="quote-slip-top">
+            <span class="label">Sample Quote</span>
+            <span class="value">#IC-0421</span>
+          </div>
+          <div class="quote-slip-row"><span class="k">Age</span><span class="v">34</span></div>
+          <div class="quote-slip-row"><span class="k">BMI</span><span class="v">26.4</span></div>
+          <div class="quote-slip-row"><span class="k">Children</span><span class="v">1</span></div>
+          <div class="quote-slip-row"><span class="k">Smoker</span><span class="v">No</span></div>
+          <div class="quote-slip-row"><span class="k">Region</span><span class="v">Southeast</span></div>
+          <div class="quote-slip-result">
+            <div class="amount-label">Estimated Charge</div>
+            <div class="amount">₹ 46,320</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow"><span class="eyebrow-dot"></span>Process</div>
+        <h2>Three inputs, one estimate</h2>
+        <p>The predictor takes a few personal details and returns an estimated annual medical insurance charge in seconds.</p>
+      </div>
+      <div class="steps">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <h3>Enter your details</h3>
+          <p>Age, sex, BMI, number of children, smoking status, and region.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h3>Model runs the prediction</h3>
+          <p>A pre-trained Linear Regression model, loaded once by the Flask server, computes the estimate — no retraining on each request.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h3>Get your estimate</h3>
+          <p>See the predicted charge instantly, along with a summary of what you entered.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="about-model">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow"><span class="eyebrow-dot"></span>Under the hood</div>
+        <h2>Prediction type: Regression</h2>
+        <p>Built with Linear Regression — a simple, interpretable algorithm well suited to estimating a continuous value like insurance charges.</p>
+      </div>
+      <div class="info-list">
+        <div class="info-item">
+          <span class="dot"></span>
+          <div>
+            <h4>What is Linear Regression?</h4>
+            <p>A statistical method that models the relationship between input features and a continuous target by fitting the straight line (or hyperplane) that best minimizes prediction error.</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <span class="dot"></span>
+          <div>
+            <h4>Features used</h4>
+            <p>Age, sex, BMI, number of children, smoker status, and region — the same six fields collected on the prediction form.</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <span class="dot"></span>
+          <div>
+            <h4>Target variable</h4>
+            <p>Charges — the individual medical insurance cost billed, in the original dataset's currency units.</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <span class="dot"></span>
+          <div>
+            <h4>Why Linear Regression fits this problem</h4>
+            <p>Charges scale fairly steadily with factors like age, BMI, and smoking status, and the goal is a single continuous number rather than a category — exactly the setup Linear Regression is built for. It is also fast to train and easy to explain, which matters for a portfolio project.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="text-align:center;">
+      <h2 style="font-size:1.7rem; margin-bottom:12px;">Ready to see your estimate?</h2>
+      <p style="color:var(--text-muted); margin-bottom:24px;">It takes less than a minute.</p>
+      <a href="/predict" class="btn btn-primary">Predict Insurance Charges</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      Insurance Charges Predictor — a Linear Regression portfolio project.
+    </div>
+  </footer>
+
+</body>
+</html>
