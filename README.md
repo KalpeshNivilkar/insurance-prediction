@@ -135,7 +135,7 @@ insurance-prediction/
 ```bash
 cd insurance-prediction
 python3 -m venv venv
-source venv/bin/activate        # Windows: \venv\Scripts\Activate.ps1
+source venv/bin/activate        # Window: \venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 ```
 
